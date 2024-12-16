@@ -7,12 +7,17 @@ import Button from "./Button";
 // importo l'array dell languages
 import languages from "../data/languages";
 function Main() {
+  const [color, setcolor] = useState(null);
   const [linguaggioSelezionato, setlinguaggioSelezionato] = useState(null);
   function selezionamento(linguaggio) {
     setlinguaggioSelezionato(linguaggio);
+    setcolor(linguaggio.id);
     // console.log(linguaggio);
   }
   //   console.log(languages);
+
+  console.log(color);
+
   return (
     <main className="d-flex flex-column">
       <div className="d-flex gap-3 ps-5 pt-5">
@@ -23,6 +28,7 @@ function Main() {
               <Button
                 title={language.title}
                 seleziono={() => selezionamento(language)}
+                premere={color === language.id}
               />
             </div>
           );
@@ -36,7 +42,7 @@ function Main() {
               description={linguaggioSelezionato.description}
             />
           ) : (
-            "Nessun linguaggio selezionato"
+            <Card title="Nessun linguaggio selezionato" />
           )}
         </div>
       </div>
